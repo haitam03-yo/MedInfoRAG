@@ -33,3 +33,19 @@ This is a project for a Retrieval-Augmented Generation (RAG) system designed to 
   ```bash
   conda activate mini-rag-app
   ```
+
+## Installation
+
+### Install the Required Packages
+
+```bash
+pip install -r requirements.txt
+```
+
+### Setup the Environment Variables
+
+```
+cp .env.example .env
+```
+
+Set your environment variables in the `.env` file. Like `OPENAI_API_KEY` value.
