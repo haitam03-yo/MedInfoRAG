@@ -1,4 +1,4 @@
-from pydantic_settings import BaseModel
+from pydantic_settings import BaseModel, SettingsConfigDict
 
 class Settings(BaseModel):
     APP_NAME:str
