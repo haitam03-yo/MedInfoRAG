@@ -1,12 +1,15 @@
-from pydantic_settings import BaseModel, SettingsConfigDict
+from fastapi import FastAPI, Depends
+from pydantic import BaseModel
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-class Settings(BaseModel):
-    APP_NAME:str
-    APP_VERSION:str
-    OPENAI_API_KEY:str
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8')
     
-    class config:
-        env_file = ".env"
-        
-def get_settings():
+    APP_NAME: str
+    APP_VERSION: str
+    OPENAI_API_KEY: str
+    
+
+
+def get_settings() -> Settings:
     return Settings()
