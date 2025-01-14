@@ -16,9 +16,18 @@ class DataController(BaseController):
         
         return True, ResponseSignal.FILE_VALIDATED_SUCCESS.value
     
+    def generate_random_string(self, ):
+        pass
+    
     def generate_unique_filepath(self, project_id:str, orig_file_name:str):
         random_key = self.generate_random_string()
+        file_path = os.path.join(
+            self.files_dir,
+            project_id,
+            orig_file_name
+        )
         
+        return file_path 
         
         
     

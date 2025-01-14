@@ -6,7 +6,7 @@ This is a project for a Retrieval-Augmented Generation (RAG) system designed to 
 
 ## **Requirements**
 
-* Python 3.8 or later
+* Python 3.12 or later
 * MiniConda for environment management
 
 ---
@@ -23,7 +23,7 @@ This is a project for a Retrieval-Augmented Generation (RAG) system designed to 
 * Open your terminal or command prompt and run the following command to create a new environment:
 
   ```bash
-  conda create -n mini-rag-app python=3.8
+  conda create -n mini-rag-app python=3.12
   ```
 
 ### **3. Activate the Environment**
