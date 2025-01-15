@@ -1,6 +1,9 @@
 from .BaseController import BaseController
 from fastapi import UploadFile
 from models import ResponseSignal
+from .ProjectController import ProjectController
+import re
+import os
 
 class DataController(BaseController):
     def __init__(self):
@@ -16,18 +19,36 @@ class DataController(BaseController):
         
         return True, ResponseSignal.FILE_VALIDATED_SUCCESS.value
     
-    def generate_random_string(self, ):
-        pass
-    
     def generate_unique_filepath(self, project_id:str, orig_file_name:str):
         random_key = self.generate_random_string()
-        file_path = os.path.join(
-            self.files_dir,
-            project_id,
-            orig_file_name
+        project_path = ProjectController().get_project_path(project_id=project_id)
+        cleaned_file_name = self.get_clean_file_name(
+            orig_file_name=orig_file_name
+        )
+        new_file_path= os.path.join(
+            project_path, 
+            random_key + '-' + cleaned_file_name
+        )
+        while os.path.exists(new_file_path):
+            random_key = self.generate_random_string()
+            new_file_path= os.path.join(
+            project_path, 
+            random_key + '-' + cleaned_file_name
         )
         
-        return file_path 
+        return new_file_path , random_key + "_" + cleaned_file_name
+    
+    def get_clean_file_name(self, orig_file_name: str):
+
+        # remove any special characters, except underscore and .
+        cleaned_file_name = re.sub(r'[^\w.\s]', '', orig_file_name.strip())
+        print(f"cleaned_file_name 1 {cleaned_file_name}")
+
+        # replace spaces with underscore
+        cleaned_file_name = cleaned_file_name.replace(" ", "_")
+        print(f"cleaned_file_name 2 {cleaned_file_name}")
+
+        return cleaned_file_name
         
         
     
