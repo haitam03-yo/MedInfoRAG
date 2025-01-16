@@ -27,7 +27,7 @@ class DataController(BaseController):
         )
         new_file_path= os.path.join(
             project_path, 
-            random_key + '-' + cleaned_file_name
+            random_key + '_' + cleaned_file_name
         )
         while os.path.exists(new_file_path):
             random_key = self.generate_random_string()
