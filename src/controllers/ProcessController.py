@@ -3,9 +3,11 @@ from .ProjectController import ProjectController
 from models import ProcessingEnum
 
 import os
-from langchain_community.document_loaders import TextLoader
-from langchain_community.document_loaders import PyMuPDFLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders.text import TextLoader
+
+from langchain_community.document_loaders.pdf import PyMuPDFLoader
+
+from langchain_text_splitters.character import RecursiveCharacterTextSplitter
 
 
 class ProcessController(BaseController):
@@ -31,7 +33,7 @@ class ProcessController(BaseController):
         
         return None
 
-    def get_fie_content(self, file_id):
+    def get_file_content(self, file_id):
         loader = self.get_file_loader(file_id=file_id)
         return loader.load()
     

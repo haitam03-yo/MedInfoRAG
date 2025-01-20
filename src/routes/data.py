@@ -21,11 +21,12 @@ async def upload_file(project_id: str, file: UploadFile,
     
     data_controller = DataController()
     is_valid, result_signal = data_controller.validate_uploaded_file(file = file)
+    
     if not is_valid:
         return JSONResponse(
                 status_code=status.HTTP_INTERNAL_SERVER_ERROR, 
                 content={
-                    "signal":result_signal
+                    "signal":result_signal,
                 }
             )
         
@@ -55,6 +56,7 @@ async def upload_file(project_id: str, file: UploadFile,
             "file_id":file_id
         }
     )
+    
 @data_router.post("/process/{project_id}")
 async def process_endpoint(project_id: str, process_request: ProcessRequest):
     file_id = process_request.file_id
